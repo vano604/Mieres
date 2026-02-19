@@ -15,7 +15,7 @@
     <script src="../js/galerie.js" defer></script>
 </head>
 
-<body>
+<body onload="contSubmit()">
     <!--header/navbar-->
     <header>
         <nav class="navbar section-content">
@@ -144,7 +144,6 @@ const database = firebase.database();
 
 // controlul intrarii
 let currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
-if(!currentUser){ window.location.href="/pagini/inreg.html"; }
 
 // vedem profilul
 document.getElementById('userName').innerText = currentUser.name;
