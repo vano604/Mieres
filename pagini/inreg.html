@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in</title>
+<link rel="icon" href="../imagini/logo imag.png">
+<link rel="stylesheet" href="../css/styleslog.css">
+
+</head>
+<body>
+
+<div class="auth-container">
+  <h2 id="formTitle">Înregistrare</h2>
+
+  <!-- Iregistrare -->
+  <div id="registerBox">
+    <input type="text" id="regUsername" placeholder="Numele" required>
+    <input type="password" id="regPassword" placeholder="Parola" required>
+    <input type="password" id="regPassword2" placeholder="Încă o dată parola" required>
+    <input type="file" id="regAvatar" accept="image/*">
+    <button onclick="registerUser()">Înregistreazăte</button>
+    <div class="toggle-link" onclick="showLoginBox()">Ai account? Intrare</div>
+  </div>
+
+  <!-- logare -->
+  <div id="loginBox" style="display:none;">
+    <input type="text" id="loginUsername" placeholder="Numele" required>
+    <input type="password" id="loginPassword" placeholder="Parola" required>
+    <button onclick="loginUser()">Intră</button>
+    <div class="toggle-link" onclick="showRegisterBox()">Nu ai acount? Înregistreazăte</div>
+  </div>
+
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="../js/inreg.js"></script>
+
+</body>
+</html>
+

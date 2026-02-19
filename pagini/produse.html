@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produse</title>
+
+    <link rel="icon" href="../imagini/logo imag.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/formular.js" defer></script>
+    <script src="../js/galerie.js" defer></script>
+</head>
+
+
+<!-- <div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close-btn" onclick="inchideCos()">×</span>
+        <h3>🛒 Coșul tău</h3>
+        <ul id="cart-list"></ul>
+        <p id="cart-total"></p>
+    </div>
+</div> -->
+
+<body>
+    <!--header/navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="../index.html#principal" class="nav-logo">
+                <h4 class="logo-text">🍯Albinuța Mea</h4>
+            </a>
+            <br>
+
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+
+                <li class="nav-intem">
+                    <a href="../index.html" class="nav-link">Acasă</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="despre.html" class="nav-link">Despre noi</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="produse.html" class="nav-link active">Produse</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="galerie.html" class="nav-link">Galerie</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="contacte.html" class="nav-link">Contacte</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="recenzii.html" class="nav-link">Recenzii</a>
+                </li>
+
+                <li class="nav-intem">
+                    <a href="account.html" class="nav-btn">Contul</a>
+                </li> 
+
+                <li class="nav-intem">
+                    <a href="cos.html" class="cosulet">🛒</a>
+                </li>
+            
+            </ul>
+             
+            
+               
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!--desper pagina de intrare-->
+        <section id="principal" class="miere-section">
+            <div class="section-content">
+                <div class="miere-details">
+                    <h3 class="subtitle">Produse</h3>
+                    <p class="description">Pagina Produse prezintă gama noastră de miere, fiecare borcan reflectând
+                        calitatea și autenticitatea produsului. Vei găsi detalii despre fiecare tip de miere,
+                        beneficiile sale și modul în care o producem, pentru a te ajuta să alegi ce ți se potrivește cel
+                        mai bine.</p>
+                    <div class="buttons">
+                        <a href="produse.html#menu" class="button order-now">Vezi produsele noastre</a>
+                        <a href="contacte.html#contact" class="button contact-us">Contactează-ne</a>
+                    </div>
+                </div>
+                <div class="miere-image-wraper">
+                    <img src="../imagini/pngegg (3).png" alt="miere" class="miere-image">
+                </div>
+            </div>
+        </section>
+
+        <!--vanzari sectiune-->
+        <section class="section menu-section produse" id="menu">
+
+              <!-- <button> onclick="scoateDinCos()"
+                <a href="../pagini/cos.html" class="cart-btn">
+                    <img src="../imagini/cosulet.png" alt="Coș" class="cart-icon">
+                <span id="cart-count">0</span>
+                </a>
+                
+            </button>  -->
+            <div>
+            <a href="../pagini/cos.html" class="cart-btn">
+            <img src="../imagini/cosulet.png" class="cart-icon">
+            <span id="cart-count">0</span>
+             </a>
+            </div>
+
+                    
+
+            <h2 class="section-title">Produsele noastre</h2>
+
+            <div class="section-content">
+                <ul class="menu-list">
+                   <li class="menu-item" >
+                        <div class="info">
+                            <img src="../imagini/miere 1.jpg" alt="a" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere Polifloră', 120, '../imagini/miere 1.jpg')">
+                            Adaugă în coș
+                            </p>
+                            
+                            <p class="pret">120 lei</p>
+                        </div>
+                        <h3 class="name">Miere Polifloră</h3>
+                        <p class="text">Un amestec bogat de nectar floral, perfect pentru energie și imunitate.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 2.jpg" alt="b" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Salcâm', 150, '../imagini/miere 2.jpg')">
+                                Adaugă în coș</p>
+                            <p class="pret">150 lei</p>
+                        </div>
+                        <h3 class="name">Miere de Salcâm</h3>
+                        <p class="text">Delicată, clară și perfectă pentru îndulcirea naturală a ceaiului.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                        <img src="../imagini/miere 3.jpg" alt="c" class="menu-image">
+                        <p class="cumpar" onclick="adaugaProdus('Miere de Tei', 100, '../imagini/miere 3.jpg')">
+                            Adaugă în coș</p>
+                            <p class="pret">100 lei</p>
+                        </div>
+                        <h3 class="name">Miere de Tei</h3>
+                        <p class="text">Parfumată și relaxantă, ideală pentru un somn odihnitor.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                        <img src="../imagini/miere 4.jpg" alt="d" class="menu-image">
+                        <p class="cumpar" onclick="adaugaProdus('Miere de Floarea-Soarelui', 80, '../imagini/miere 4.jpg')">
+                            Adaugă în coș</p>
+                            <p class="pret">80 lei</p>
+                        </div>
+                        <h3 class="name">Miere de Floarea-Soarelui</h3>
+                        <p class="text">Dulce și intensă, perfectă pentru un boost de vitalitate.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 5.jpg" alt="e" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere cu Lămâie și Ghimbir', 190, '../imagini/miere 5.jpg')">
+                                Adaugă în coș</p>
+                            <p class="pret">190 lei</p>
+                        </div>
+
+                        <h3 class="name">Miere cu Lămâie și Ghimbir</h3>
+                        <p class="text">Revigoranta și sănătoasă, ideală pentru sezonul rece.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 6.jpg" alt="f" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere cu Cacao', 150, '../imagini/miere 6.jpg')">Adaugă în coș</p>
+                            <p class="pret">150 lei</p>
+                        </div>
+                        <h3 class="name">Miere cu Cacao</h3>
+                        <p class="text">O alternativă naturală la cremele tartinabile, cu gust de ciocolată.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 7.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere în fag', 135, '../imagini/miere 7.jpg')">Adaugă în coș</p>
+                            <p class="pret">135 lei</p>
+                        </div>
+                        <h3 class="name">Miere în Fagure</h3>
+                        <p class="text">Proaspătă cu aromă de mentă și direct din stupul harnic.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 8.jpg" alt="h" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere din Floarea-Soarelui cantitate mică', 170, '../imagini/miere 8.jpg')">Adaugă în coș</p>
+                            <p class="pret">170 lei</p>
+                        </div>
+                        <h3 class="name">Miere din Floarea-Soarelui cantitate mică<Figc></Figc></h3>
+                        <p class="text">Delicioasa, aromată și desigur cu dragoste.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 9.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Vitamine din Miere', 135, '../imagini/miere 9.jpg')">Adaugă în coș</p>
+                            <p class="pret">150 lei</p>
+                        </div>
+                        <h3 class="name">Vitamine din Miere</h3>
+                        <p class="text">Sanătate zilnica întro sticluță mică.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 10.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Polen de albine', 150, '../imagini/miere 10.jpg')">Adaugă în coș</p>
+                            <p class="pret">150 lei</p>
+                        </div>
+                        <h3 class="name">Polen de albine</h3>
+                        <p class="text">O serie de vitamine, minerale, antioxidanți și factori antimicrobieni</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 11.jpg" alt="h" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Tinctură de Propolis', 140, '../imagini/miere 11.jpg')">Adaugă în coș</p>
+                            <p class="pret">140 lei</p>
+                        </div>
+                        <h3 class="name">Tinctură de Propolis<Figc></Figc></h3>
+                        <p class="text">Medicul specialist și remediu natural în multiple patologii.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 12.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Tinctură de Albine moarte', 140, '../imagini/miere 12.jpg')">Adaugă în coș</p>
+                            <p class="pret">140 lei</p>
+                        </div>
+                        <h3 class="name">Tinctură de Albine moarte</h3>
+                        <p class="text">Sanătate zilnica întro sticluță mică.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 13.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Mai', 140, '../imagini/miere 13.jpg')">Adaugă în coș</p>
+                            <p class="pret">140 MDL</p>
+                        </div>
+                        <h3 class="name">Miere de Mai</h3>
+                        <p class="text">Produs unic, cules de albinele harnice în perioada înfloririi ierburilor și florilor de mai.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 14.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Hrișcă', 150, '../imagini/miere 14.jpg')">Adaugă în coș</p>
+                            <p class="pret">150 MDL</p>
+                        </div>
+                        <h3 class="name">Miere de Hrișcă</h3>
+                        <p class="text">Produs din perioada de înflorire a hriștei, de la sfârșitul lunii iunie.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 15.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Coriandru', 120, '../imagini/miere 15.jpg')">Adaugă în coș</p>
+                            <p class="pret">120 MDL</p>
+                        </div>
+                        <h3 class="name">Miere de Coriandru</h3>
+                        <p class="text">Produs din perioada de înflorire a hriștei, de la sfârșitul lunii iunie.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 16.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Lavandă', 160, '../imagini/miere 16.jpg')">Adaugă în coș</p>
+                            <p class="pret">160 MDL</p>
+                        </div>
+                        <h3 class="name">Miere de Lavandă</h3>
+                        <p class="text">Aromă inconfundabilă, unică și de neuitat și cu gustul serilor calde de vară.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 17.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Rapiță', 190, '../imagini/miere 17.jpg')">Adaugă în coș</p>
+                            <p class="pret">190 MDL</p>
+                        </div>
+                        <h3 class="name">Miere de Rapiță</h3>
+                        <p class="text">Consistențe și arome unice ce conține vitamina A, B1, B2, Betacaroten, proteine și substanțe minerale.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 18.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere de Salvie', 180, '../imagini/miere 18.jpg')">Adaugă în coș</p>
+                            <p class="pret">180 MDL</p>
+                        </div>
+                        <h3 class="name">Miere de Salvie</h3>
+                        <p class="text">Consistențe și arome unice ce conține vitamina A, B1, B2, Betacaroten, proteine și substanțe minerale.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 19.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Lăptișor de Matcă', 110, '../imagini/miere 19.jpg')">Adaugă în coș</p>
+                            <p class="pret">110 MDL</p>
+                        </div>
+                        <h3 class="name">Lăptișor de Matcă</h3>
+                        <p class="text">Lăptișorul de Matcă este considerat un tonic natural, care contribuie la creșterea energiei.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 20.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Păstură', 180, '../imagini/miere 20.jpg')">Adaugă în coș</p>
+                            <p class="pret">180 MDL</p>
+                        </div>
+                        <h3 class="name">Păstură</h3>
+                        <p class="text">Păstura este un produs cu 65% proteină, fiind adesea consumat de către sportivi.</p>
+                    </li>
+                    <li class="menu-item">
+                        <div class="info">
+                            <img src="../imagini/miere 21.jpg" alt="g" class="menu-image">
+                            <p class="cumpar" onclick="adaugaProdus('Miere din Susleni', 130, '../imagini/miere 21.jpg')">Adaugă în coș</p>
+                            <p class="pret">130 MDL</p>
+                        </div>
+                        <h3 class="name">Miere din Susleni</h3>
+                        <p class="text">Apicultor local în Susleni, Orhei. Miere de albine crudă (nepasteurizată): salcâm, tei, polifloră, floarea-soarelui și rapiță.</p>
+                    </li>
+                </ul>
+
+                <section class="miere-info">
+                    <h2 class="centered info-despre">Da și o comandă specială pentru tine...</h2>
+                    <div class="centered"><a href="contacte.html" class="despre-buton">⬡  Accesează...  ⬡</a></div>
+                </section>
+            </div>
+        </section>
+
+        <!--footer-->
+
+        <footer class="footer-section">
+            <div class="section-content">
+                <p class="copyright-text">© <span id="year"></span> Magazin de miere</p>
+
+                <div class="social-link-list">
+                    <a target="_blank" href="https://www.facebook.com/olesea.avricenco" class="social-link"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/oleseaavricenco/" class="social-link"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <p>Acest website a fost realizat în cadrul competiției ”Tekwill
+                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+                proiectului.</p>
+        </footer>
+    </main>
+
+    <!--link swiper-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!---->
+    <script src="../js/main.js"></script>
+    <script src="../js/cosul.js"></script>
+</body>
+
+</html>

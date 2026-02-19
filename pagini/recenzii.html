@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recenzii</title>
+
+    <link rel="icon" href="../imagini/logo imag.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/formular.js" defer></script>
+    <script src="../js/galerie.js" defer></script>
+</head>
+
+<body>
+    <!--header/navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="../index.html#principal" class="nav-logo">
+                <h2 class="logo-text">🍯Albinuța Mea</h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+
+                <li class="nav-intem">
+                    <a href="../index.html" class="nav-link">Acasă</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="despre.html" class="nav-link">Despre noi</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="produse.html" class="nav-link">Produse</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="galerie.html" class="nav-link">Galerie</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="contacte.html" class="nav-link">Contacte</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="recenzii.html" class="nav-link active">Recenzii</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="account.html" class="nav-btn">Contul</a>
+                </li>
+                <li class="nav-intem">
+                                <a href="cos.html" class="cosulet">🛒</a>
+                            </li>
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!--desper pagina de intrare-->
+        <section id="principal" class="miere-section">
+            <div class="section-content">
+                <div class="miere-details">
+                    <h3 class="subtitle">Recenzii</h3>
+                    <p class="description">Pagina Recenzii îți pune la dispoziție recenziile tale și a altor 
+                        oameni, poți trimite mai multe recenzii. Suntem bucuroși să auzim ce gândesc despre noi!
+                    </p>
+                    <div class="buttons">
+                        <a href="produse.html#menu" class="button order-now">Vezi produsele noastre</a>
+                        <a href="contacte.html" class="button contact-us">Contactează-ne</a>
+                    </div>
+                </div>
+                <div class="miere-image-wraper">
+                    <img src="../imagini/pngegg (3).png" alt="miere" class="miere-image">
+                </div>
+            </div>
+        </section>
+<section class="recenzion">
+    <h2 class="section-title">Recenzii utilizatorilor noștri</h2>
+
+        <!-- forma pentru recxenzii -->
+        <div class="review-form">
+            <textarea id="reviewInput" placeholder="Scrie recenzia ta..."></textarea>
+            <br>
+            <button onclick="addReview()">Trimite recenzia</button>
+        </div>
+
+        
+
+        <h2>Recenzii</h2>
+        <div id="reviewsList">Se încarcă recenziile...</div>
+
+        </section>
+    </main>
+    
+        <!--footer-->
+
+        <footer class="footer-section">
+            <div class="section-content">
+                <p class="copyright-text">© <span id="year"></span> Magazin de miere</p>
+
+                <div class="social-link-list">
+                    <a target="_blank" href="https://www.facebook.com/olesea.avricenco" class="social-link"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/oleseaavricenco/" class="social-link"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <p>Acest website a fost realizat în cadrul competiției ”Tekwill
+                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+                proiectului.</p>
+        </footer>
+   
+
+    <!--link swiper-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+    // Firebase config
+    const firebaseConfig = {
+  apiKey: "AIzaSyDezeBHfvR0wFRggzxU0ga2AFrrDhhjA00",
+  authDomain: "miere-559ac.firebaseapp.com",
+  databaseURL: "https://miere-559ac-default-rtdb.firebaseio.com",
+  projectId: "miere-559ac",
+  storageBucket: "miere-559ac.firebasestorage.app",
+  messagingSenderId: "2422302555",
+  appId: "1:2422302555:web:d23258dcb323a621099c7e",
+  measurementId: "G-4C5HWD9CEX"
+};
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    
+    // inregistrare
+    let currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
+    if(!currentUser){ window.location.href="/pagini/inreg.html"; }
+    
+    // Formularul de scrisoare este afișat doar administratorului.
+
+
+    if(currentUser.role === "admin") document.getElementById("mailForm").style.display="block";
+    
+    // ----------------- ОТЗЫВЫ -------------------
+    function showReviews(){
+    const div = document.getElementById("reviewsList");
+    div.innerHTML="Recenziile se încarcă...";
+    
+    database.ref('reviews').once('value').then(snapshot=>{
+    const reviews = snapshot.val();
+    div.innerHTML="";
+    if(!reviews){ div.innerHTML="<p>Nu sunt recenzii</p>"; return; }
+    
+    const reviewsArr = Object.keys(reviews).map(k=>({id:k,...reviews[k]}));
+    reviewsArr.sort((a,b)=>b.timestamp - a.timestamp);
+    
+    reviewsArr.forEach(r=>{
+        r.likes=r.likes||[];
+        r.dislikes=r.dislikes||[];
+        const liked=r.likes.includes(currentUser.name);
+        const disliked=r.dislikes.includes(currentUser.name);
+        const canDelete=currentUser.name===r.name || (currentUser.role==="admin" && r.role==="user");
+    
+        const reviewDiv=document.createElement("div");
+        reviewDiv.className="review-card";
+        reviewDiv.innerHTML=`
+            <h3>${r.name}</h3>
+            <p>${r.text}</p>
+            <div class="review-actions">
+                <button onclick="toggleLike('${r.id}','like')" style="background:${liked?'#8f8':'#eee'}">👍 ${r.likes.length}</button>
+                <button onclick="toggleLike('${r.id}','dislike')" style="background:${disliked?'#f88':'#eee'}">👎 ${r.dislikes.length}</button>
+                ${canDelete? `<button onclick="deleteReview('${r.id}')" style="background:red;color:white;">Șterge</button>` : ''}
+            </div>`;
+        div.appendChild(reviewDiv);
+    });
+    }).catch(err=>{div.innerHTML="Erroare: "+err.message;});
+    }
+    
+    function addReview(){
+    if(!currentUser) return alert("Nu ești autentificat/ă.");
+    const text = document.getElementById("reviewInput").value.trim();
+    if(!text) return alert("Scriți textul receziei");
+    const newKey = database.ref().child('reviews').push().key;
+    const review = { name: currentUser.name, role: currentUser.role, text:text, likes:[], dislikes:[], timestamp:Date.now() };
+    database.ref('reviews/'+newKey).set(review).then(()=>{ document.getElementById("reviewInput").value=""; showReviews(); });
+    }
+    function toggleLike(key,type){
+    const reviewRef = database.ref('reviews/'+key);
+    reviewRef.once('value').then(snapshot=>{
+    const r=snapshot.val(); if(!r) return;
+    r.likes=r.likes||[]; r.dislikes=r.dislikes||[];
+    if(type==='like'){ r.dislikes=r.dislikes.filter(u=>u!==currentUser.name); if(r.likes.includes(currentUser.name)) r.likes=r.likes.filter(u=>u!==currentUser.name); else r.likes.push(currentUser.name);}
+    if(type==='dislike'){ r.likes=r.likes.filter(u=>u!==currentUser.name); if(r.dislikes.includes(currentUser.name)) r.dislikes=r.dislikes.filter(u=>u!==currentUser.name); else r.dislikes.push(currentUser.name);}
+    reviewRef.update({likes:r.likes,dislikes:r.dislikes}).then(()=>showReviews());
+    }
+    );}
+    function deleteReview(key){ database.ref('reviews/'+key).remove().then(()=>showReviews()); }
+    
+    // ----------------- Scrisori -------------------
+    function showMail(){
+    const div = document.getElementById("mailList");
+    div.innerHTML="Scrisorile se încarcă...";
+    database.ref('mails').once('value').then(snapshot=>{
+    const mails = snapshot.val(); div.innerHTML="";
+    if(!mails){ div.innerHTML="<p>Nu sunt scrisori</p>"; return; }
+    
+    const mailsArr = Object.keys(mails).map(k=>({id:k,...mails[k]}));
+    mailsArr.sort((a,b)=>b.timestamp - a.timestamp);
+    
+    mailsArr.forEach(m=>{
+        if(currentUser.role!=="admin" && m.to !== currentUser.name) return; // O persoană obișnuită își vede doar propriile e-mailuri.
+
+    
+        const divCard=document.createElement("div");
+        divCard.className="review-card";
+        divCard.style.background="#2a2f57";
+        let content=`<b>${m.from} → ${m.to}</b><br>${m.text}`;
+        divCard.innerHTML=content;
+    
+        // удаление письма (для админа или для отправителя)
+        if(currentUser.role==="admin" || m.to===currentUser.name){
+            const btn = document.createElement("button");
+            btn.textContent="Șterge";
+            btn.style.background="red"; btn.style.color="white"; btn.style.marginTop="5px";
+            btn.onclick=()=>{ database.ref('mails/'+m.id).remove().then(()=>showMail()); };
+            divCard.appendChild(btn);
+        }
+        div.appendChild(divCard);
+    });
+    });
+    }
+    
+    function sendFirebaseMail(){
+    if(currentUser.role!=="admin") return alert("Doar administratorul poate trimite scrisori");
+    const to=document.getElementById("mailTo").value.trim();
+    const text=document.getElementById("mailInput").value.trim();
+    if(!to||!text) return alert("Completați destinatarul și textul");
+    database.ref('users').once('value').then(snapshot=>{
+    const users=snapshot.val()||{};
+    if(!Object.values(users).some(u=>u.name===to)) return alert("Utilizatorul nu există");
+    const newKey = database.ref().child('mails').push().key;
+    const mail={id:newKey,from:currentUser.name,to:to,text:text,timestamp:Date.now()};
+    database.ref('mails/'+newKey).set(mail).then(()=>{ document.getElementById("mailTo").value=""; document.getElementById("mailInput").value=""; showMail(); });
+    });
+    }
+    
+    // incarcarea recenziilor auto
+    window.onload = function(){
+    showReviews();
+};
+
+    
+    </script>
+
+    <!---->
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
+

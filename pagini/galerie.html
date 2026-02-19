@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie</title>
+
+    <link rel="icon" href="../imagini/logo imag.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/formular.js" defer></script>
+    <script src="../js/galerie.js" defer></script>
+</head>
+
+<body>
+    <!--header/navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="../index.html#principal" class="nav-logo">
+                <h2 class="logo-text">🍯Albinuța Mea</h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+
+                <li class="nav-intem">
+                    <a href="../index.html" class="nav-link">Acasă</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="despre.html" class="nav-link">Despre noi</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="produse.html" class="nav-link">Produse</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="galerie.html" class="nav-link active">Galerie</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="contacte.html" class="nav-link">Contacte</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="recenzii.html" class="nav-link">Recenzii</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="account.html" class="nav-btn">Contul</a>
+                </li>
+                  </li>
+                                <li class="nav-intem">
+                                <a href="cos.html" class="cosulet">🛒</a>
+                            </li> 
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!--desper pagina de intrare-->
+        <section id="principal" class="miere-section">
+            <div class="section-content">
+                <div class="miere-details">
+                    <h3 class="subtitle">Galerie</h3>
+                    <p class="description">Pagina Galerie îți oferă o privire vizuală asupra procesului nostru de
+                        producție și a momentelor importante din activitatea noastră. Aici vei găsi imagini cu
+                        stupinele, recolta și echipa noastră, pentru a înțelege mai bine munca din spatele fiecărui
+                        borcan de miere.</p>
+                    <div class="buttons">
+                        <a href="produse.html#menu" class="button order-now">Vezi produsele noastre</a>
+                        <a href="contacte.html#contact" class="button contact-us">Contactează-ne</a>
+                    </div>
+                </div>
+                <div class="miere-image-wraper">
+                    <img src="../imagini/pngegg (3).png" alt="miere" class="miere-image">
+                </div>
+            </div>
+        </section>
+
+        <!--gallery-->
+        <section class="section gallery-section" id="gallery">
+            <h2 class="section-title">Galerie</h2>
+            <div class="section-content">
+                <ul class="gallery-list">
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 1.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 2.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 3.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 4.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 5.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 6.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 7.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 8.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 9.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 10.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 11.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    <li class="gallery-item">
+                        <img src="../imagini/galerie 12.jpg" alt="Gallery" class="gallery-image">
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+
+        <div id="imageModal">
+            <button id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+            <img id="modalImage" src="" alt="Imagine mare">
+            <button id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!--footer-->
+
+        <footer class="footer-section">
+            <div class="section-content">
+                <p class="copyright-text">© <span id="year"></span> Magazin de miere</p>
+
+                <div class="social-link-list">
+                    <a target="_blank" href="https://www.facebook.com/olesea.avricenco" class="social-link"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/oleseaavricenco/" class="social-link"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <p>Acest website a fost realizat în cadrul competiției ”Tekwill
+                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+                proiectului.</p>
+        </footer>
+    </main>
+
+    <!--link swiper-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!---->
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

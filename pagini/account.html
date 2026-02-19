@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contul Tău</title>
+
+    <link rel="icon" href="../imagini/logo imag.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/formular.js" defer></script>
+    <script src="../js/galerie.js" defer></script>
+</head>
+
+<body>
+    <!--header/navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="../index.html#principal" class="nav-logo">
+                <h2 class="logo-text">🍯Albinuța Mea</h2>
+            </a>
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+
+                <li class="nav-intem">
+                    <a href="../index.html" class="nav-link">Acasă</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="despre.html" class="nav-link">Despre noi</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="produse.html" class="nav-link">Produse</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="galerie.html" class="nav-link">Galerie</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="contacte.html" class="nav-link">Contacte</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="recenzii.html" class="nav-link">Recenzii</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="account.html" class="nav-btn active">Contul</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="cos.html" class="cosulet">🛒</a>
+                </li> 
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!--desper pagina de intrare-->
+        <section id="principal" class="miere-section">
+            <div class="section-content">
+                <div class="miere-details">
+                    <h3 class="subtitle">Contul Tău</h3>
+                    <p class="description">Pagina Contul Tău este pagina ta personală pe unde ai informația ta.</p>
+                    <div class="buttons">
+                        <a href="produse.html#menu" class="button order-now">Vezi produsele noastre</a>
+                        <a href="contacte.html#contact" class="button contact-us">Contactează-ne</a>
+                    </div>
+                </div>
+                <div class="miere-image-wraper">
+                    <img src="../imagini/pngegg (3).png" alt="miere" class="miere-image">
+                </div>
+            </div>
+        </section>
+
+        <!--acount-->
+        <h2 class="section-title">Contul Tău</h2>
+        <section class="section contact-section recenzion">
+        <div class="profile">
+            <img id="userAvatar" src="">
+            <div class="profile-info">
+                <h2 id="userName"></h2>
+                <p>Rang: <span id="userRole"></span></p>
+                <button class="btn-logout" onclick="logoutUser()">Log out</button>
+            </div>
+        </div>
+        <hr>
+        <section class="sectionadm1" id="adminSection" style="display:none;">
+            <h3>Trimite scrisori utilizatorilor</h3>
+            <input class="inp-adm" type="text" id="mailTo" placeholder="Cui (numele utilizatorului)">
+            <textarea class="admtexta" id="mailInput" rows="4" placeholder="Textul"></textarea>
+            <button class="btn-scrisori" onclick="sendFirebaseMail()">Trimite</button>
+        </section>
+    
+        <section class="sectionadm1">
+            <h3>Scrisori</h3>
+            <div id="mailList">Încărcarea scrisorilor...</div>
+        </section>
+        
+        </section>
+    </main>
+
+        <!--footer-->
+
+        <footer class="footer-section">
+            <div class="section-content">
+                <p class="copyright-text">© <span id="year"></span> Magazin de miere</p>
+
+                <div class="social-link-list">
+                    <a target="_blank" href="https://www.facebook.com/olesea.avricenco" class="social-link"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/oleseaavricenco/" class="social-link"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <p>Acest website a fost realizat în cadrul competiției ”Tekwill
+                Junior Ambassadors” organizată de proiectul ”Tekwill în Fiecare Școală” și nu reflectă neapărat opinia
+                proiectului.</p>
+        </footer>
+    
+
+    <!--link swiper-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+    <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyDezeBHfvR0wFRggzxU0ga2AFrrDhhjA00",
+  authDomain: "miere-559ac.firebaseapp.com",
+  databaseURL: "https://miere-559ac-default-rtdb.firebaseio.com",
+  projectId: "miere-559ac",
+  storageBucket: "miere-559ac.firebasestorage.app",
+  messagingSenderId: "2422302555",
+  appId: "1:2422302555:web:d23258dcb323a621099c7e",
+  measurementId: "G-4C5HWD9CEX"
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// controlul intrarii
+let currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
+if(!currentUser){ window.location.href="/pagini/inreg.html"; }
+
+// vedem profilul
+document.getElementById('userName').innerText = currentUser.name;
+document.getElementById('userAvatar').src = currentUser.avatar;
+document.getElementById('userRole').innerText = currentUser.role;
+
+// admin vede formularul
+if(currentUser.role==="admin") document.getElementById('adminSection').style.display="block";
+
+// logout
+function logoutUser(){
+    localStorage.removeItem('currentUser');
+    window.location.href="../index.html";
+}
+
+
+// trimiterea scrisorilor numa administratorii
+function sendFirebaseMail(){
+    if(currentUser.role!=="admin") return alert("Doar administratorul poate trimite scrisori");
+
+    const to=document.getElementById("mailTo").value.trim();
+    const text=document.getElementById("mailInput").value.trim();
+    if(!to||!text) return alert("Completați destinatarul și textul scrisorii");
+
+    database.ref('users').once('value').then(snapshot=>{
+        const usersDb = snapshot.val() || {};
+        if(!Object.values(usersDb).some(u=>u.name===to)) return alert("Utilizatorul nu este găsit");
+
+        const newKey = database.ref().child('mails').push().key;
+        const mail = {id:newKey, from:currentUser.name, to:to, text:text, timestamp:Date.now()};
+        const updates = {}; updates['/mails/'+newKey]=mail;
+
+        database.ref().update(updates).then(()=>{
+            document.getElementById("mailTo").value="";
+            document.getElementById("mailInput").value="";
+            showFirebaseMail();
+        }).catch(err=>alert("Erroare: "+err.message));
+    });
+}
+
+// aratam scrisorile
+function showFirebaseMail(){
+    const list = document.getElementById("mailList");
+    list.innerHTML="Încarcarea scrisorilor...";
+
+    database.ref('mails').once('value').then(snapshot=>{
+        const mails = snapshot.val() || {};
+        list.innerHTML="";
+
+        const mailsArr = Object.keys(mails).map(k=>({id:k,...mails[k]}));
+        mailsArr.sort((a,b)=>b.timestamp - a.timestamp);
+
+        mailsArr.forEach(m=>{
+            // afișează doar e-mailurile pentru utilizatorul curent sau trimise de acesta (pentru administrator)
+            if(currentUser.role!=="admin" && m.to!==currentUser.name) return;
+
+            const div = document.createElement("div");
+            div.className="mail-card";
+            div.innerHTML=`<b>${m.from} → ${m.to}</b><p>${m.text}</p>`;
+
+            // butonul de ștergere pentru admin
+            if(currentUser.role==="admin" && m.from===currentUser.name){
+                const delBtn = document.createElement("button");
+                delBtn.textContent="Șterge";
+                delBtn.onclick = ()=>deleteFirebaseMail(m.id);
+                div.appendChild(delBtn);
+            }
+
+            list.appendChild(div);
+        });
+
+        if(list.innerHTML==="") list.innerHTML="<p>Scrisori nu sunt</p>";
+    });
+}
+
+// Ștergerea unei litere (admin)
+function deleteFirebaseMail(id){
+    database.ref('mails/'+id).remove().then(()=>showFirebaseMail()).catch(err=>alert("Erroare: "+err.message));
+}
+
+// Auto reloading
+window.onload = function(){
+    showFirebaseMail();
+};
+</script>
+
+<script>
+
+// Aratam linku numa lu admin
+if(currentUser.role === "admin"){
+    document.getElementById("adminPanelLink").style.display = "block";
+}
+</script>
+
+    <!---->
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
