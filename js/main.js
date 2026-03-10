@@ -98,6 +98,6 @@ function contSubmit() {
     
     // inregistrare
     let currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
-    if(!currentUser){ window.location.href="/pagini/inreg.html"; }
+    if(!currentUser){ window.location.href="../pagini/inreg.html"; }
 
 }
