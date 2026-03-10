@@ -15,7 +15,7 @@
     <script src="../js/galerie.js" defer></script>
 </head>
 
-<body onload="contSubmit()">
+<body>
     <!--header/navbar-->
     <header>
         <nav class="navbar section-content">
@@ -135,6 +135,7 @@
     
     // inregistrare
     let currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
+    if(!currentUser){ window.location.href="/pagini/inreg.html"; }
     
     // Formularul de scrisoare este afișat doar administratorului.
 
