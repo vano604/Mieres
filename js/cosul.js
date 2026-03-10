@@ -17,37 +17,37 @@ function adaugaProdus(nume, pret, img) {
 
 // afișează produsele din coș
 function afiseazaCos() {
-
     const lista = document.getElementById("cart-list");
     const totalEl = document.getElementById("cart-total");
-  
+
     lista.innerHTML = "";
-  
     let total = 0;
-    let totalItems = 0;
-  
+
     cos.forEach((prod, index) => {
-  
-      total += prod.pret * prod.cantitate;
-      totalItems += prod.cantitate;
-  
-      const li = document.createElement("li");
-  
-      li.innerHTML = `
+
+        total += prod.pret * prod.cantitate;
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
         <div class="cart-card">
-          <button class="remove-btn" onclick="stergeProdus(${index})">X</button>
-          <img src="${prod.img}" class="cart-img">
-          <h4>${prod.nume}</h4>
-          <p>${prod.pret} lei</p>
-          <span class="badge">x${prod.cantitate}</span>
+            <button class="remove-btn"
+                onclick="stergeProdus(${index})">❌</button>
+
+            <img src="${prod.img}" class="cart-img">
+
+            <h4>${prod.nume}</h4>
+            <p>${prod.pret} lei</p>
+
+            <span class="badge">x${prod.cantitate}</span>
         </div>
-      `;
-  
-      lista.appendChild(li);
+        `;
+
+        lista.appendChild(li);
     });
-  
-    totalEl.textContent = "Total produse: " + totalItems + " | Total preț: " + total + " lei";
-  }
+
+    totalEl.innerHTML = `<strong>Total: ${total} lei</strong>`;
+}
 
 
 // șterge produs din coș

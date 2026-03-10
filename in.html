@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recenzii</title>
+
+    <link rel="icon" href="../imagini/logo imag.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <!--header/navbar-->
+    <header>
+        <nav class="navbar section-content">
+            <a href="../index.html#principal" class="nav-logo">
+                <h2 class="logo-text">🍯Albinuța Mea</h2>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-intem">
+                    <a href="home.html" class="nav-link">Acasă</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="despre.html" class="nav-link">Despre noi</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="produse.html" class="nav-link">Produse</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="galerie.html" class="nav-link">Galerie</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="contacte.html" class="nav-link">Contacte</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="recenzii.html" class="nav-link active">Recenzii</a>
+                </li>
+                <li class="nav-intem">
+                    <a href="account.html" class="nav-btn">Contul Tău</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Recenzii utilizatori</h1>
+
+        <!-- Форма для отправки отзыва -->
+        <div class="review-form">
+            <textarea id="reviewInput" placeholder="Scrie recenzia ta..."></textarea>
+            <br>
+            <button onclick="addReview()">Trimite recenzia</button>
+        </div>
+
+        <h2>Recenzii</h2>
+        <div id="reviewsList">Se încarcă recenziile...</div>
+    </main>
+
+    <footer class="footer-section">
+        <div class="section-content">
+            <p class="copyright-text">© <span id="year"></span> Magazin de miere</p>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDezeBHfvR0wFRggzxU0ga2AFrrDhhjA00",
+            authDomain: "miere-559ac.firebaseapp.com",
+            databaseURL: "https://miere-559ac-default-rtdb.firebaseio.com",
+            projectId: "miere-559ac",
+            storageBucket: "miere-559ac.firebasestorage.app",
+            messagingSenderId: "2422302555",
+            appId: "1:2422302555:web:d23258dcb323a621099c7e"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Авторизация
+        let currentUser = JSON.parse(sessionStorage.getItem('currentUser') || "null");
+        if (!currentUser) {
+            window.location.href = "../index.html";
+        }
+
+        // ----------------- ОТЗЫВЫ -------------------
+        function showReviews() {
+            const div = document.getElementById("reviewsList");
+            div.innerHTML = "Se încarcă recenziile...";
+
+            database.ref('reviews').once('value').then(snapshot => {
+                const reviews = snapshot.val();
+                div.innerHTML = "";
+                if (!reviews) { div.innerHTML = "<p>Până acum nu sunt recenzii</p>"; return; }
+
+                const reviewsArr = Object.keys(reviews).map(k => ({ id: k, ...reviews[k] }));
+                reviewsArr.sort((a, b) => b.timestamp - a.timestamp);
+
+                reviewsArr.forEach(r => {
+                    r.likes = r.likes || [];
+                    r.dislikes = r.dislikes || [];
+                    const liked = r.likes.includes(currentUser.name);
+                    const disliked = r.dislikes.includes(currentUser.name);
+                    const canDelete = currentUser.name === r.name || (currentUser.role === "admin" && r.role === "user");
+
+                    const reviewDiv = document.createElement("div");
+                    reviewDiv.className = "review-card";
+                    reviewDiv.innerHTML = `
+                        <h3>${r.name}</h3>
+                        <p>${r.text}</p>
+                        <div class="review-actions">
+                            <button onclick="toggleLike('${r.id}','like')" style="background:${liked ? '#8f8' : '#eee'}">👍 ${r.likes.length}</button>
+                            <button onclick="toggleLike('${r.id}','dislike')" style="background:${disliked ? '#f88' : '#eee'}">👎 ${r.dislikes.length}</button>
+                            ${canDelete ? `<button onclick="deleteReview('${r.id}')" style="background:red;color:white;">Șterge</button>` : ''}
+                        </div>`;
+                    div.appendChild(reviewDiv);
+                });
+            }).catch(err => { div.innerHTML = "Eroare: " + err.message; });
+        }
+
+        function addReview() {
+            if (!currentUser) return alert("Nu ești autentificat");
+            const text = document.getElementById("reviewInput").value.trim();
+            if (!text) return alert("Scrie recenzia ta");
+            const newKey = database.ref().child('reviews').push().key;
+            const review = { name: currentUser.name, role: currentUser.role, text: text, likes: [], dislikes: [], timestamp: Date.now() };
+            database.ref('reviews/' + newKey).set(review).then(() => {
+                document.getElementById("reviewInput").value = "";
+                showReviews();
+            });
+        }
+
+        function toggleLike(key, type) {
+            const reviewRef = database.ref('reviews/' + key);
+            reviewRef.once('value').then(snapshot => {
+                const r = snapshot.val(); if (!r) return;
+                r.likes = r.likes || []; r.dislikes = r.dislikes || [];
+                if (type === 'like') {
+                    r.dislikes = r.dislikes.filter(u => u !== currentUser.name);
+                    if (r.likes.includes(currentUser.name)) r.likes = r.likes.filter(u => u !== currentUser.name);
+                    else r.likes.push(currentUser.name);
+                }
+                if (type === 'dislike') {
+                    r.likes = r.likes.filter(u => u !== currentUser.name);
+                    if (r.dislikes.includes(currentUser.name)) r.dislikes = r.dislikes.filter(u => u !== currentUser.name);
+                    else r.dislikes.push(currentUser.name);
+                }
+                reviewRef.update({ likes: r.likes, dislikes: r.dislikes }).then(() => showReviews());
+            });
+        }
+
+        function deleteReview(key) { database.ref('reviews/' + key).remove().then(() => showReviews()); }
+
+        window.onload = function () {
+            showReviews();
+        };
+    </script>
+</body>
+
+</html>

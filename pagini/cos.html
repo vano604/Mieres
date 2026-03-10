@@ -20,12 +20,12 @@
         <span class="close" onclick="inchideComanda()">×</span>
         <h2>Finalizare comandă</h2>
 
-        <form class="comand" id="commandForm" onsubmit="trimiteComanda(event)">
-            <input type="text" name="name" id="name" placeholder="Nume" required>
-            <input type="tel" name="number" id="number" placeholder="Telefon" required>
-            <input type="text" name="adress" id="adress" placeholder="Adresă" required>
+        <form class="comand" onsubmit="trimiteComanda(event)">
+            <input type="text" placeholder="Nume" required>
+            <input type="tel" placeholder="Telefon" required>
+            <input type="text" placeholder="Adresă" required>
             
-            <textarea name="message" id="message" placeholder="Mesaj opțional"></textarea>
+            <textarea placeholder="Mesaj opțional"></textarea>
 
             <button type="submit" class="cart-totall" >Trimite comanda</button>
         </form>
@@ -126,7 +126,6 @@
     <!---->
     <script src="../js/main.js"></script>
     <script src="../js/cosul.js"></script>
-    <script src="../js/finalComanda.js"></script>
 <script>
     afiseazaCos(); // afișează produsele când intri pe pagina coș
 </script>

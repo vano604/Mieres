@@ -421,7 +421,7 @@ header .navbar {
 
 /*despre noi stiluri*/
 .about-section {
-    padding: 120px 0;
+    padding: 120px 15%;
     background: var(--light-pink-color);
 }
 
@@ -475,7 +475,8 @@ header .navbar {
 .menu-section {
     color: var(--white-color);
     background: var(--dark-color);
-    padding: 50px 0 100px;
+    padding: 50px 10%;
+    margin: 0 10%;
 }
 
 .menu-section.produse {
@@ -632,7 +633,8 @@ header .navbar {
 /*galerie*/
 
 .gallery-section {
-    padding: 50px 0 100px;
+    padding: 50px 0 10%;
+    margin: 0 10%;
 }
 
 .gallery-section .gallery-list {
@@ -726,7 +728,7 @@ header .navbar {
 section.sectionadm1 {margin-top:30px;}
 section.sectionadm1 h3 {margin-bottom:10px;}
 input.inp-adm {margin-bottom: 15px;}
-textarea.admtexta {width:100%; padding:10px; border-radius:8px; border:none; resize:none; margin-bottom:15px; background:#f3961c; color:white;}
+textarea.admtexta {width:100%; padding:10px; border-radius:8px; border:none; resize:none; margin-bottom:15px; background:#f3961c; color:black;}
 button.btn-scrisori, button.btn-logout {padding:8px 15px; border:none; border-radius:8px; cursor:pointer; background:#750f23; color:white; font-weight:500;}
 button.btn-scrisori:hover, button.btn-logout:hover {background:#750f23;}
 .mail-card {background:#f3961c; padding:15px; border-radius:12px; margin-bottom:15px; position:relative;}
@@ -810,7 +812,7 @@ button.btn-scrisori:hover, button.btn-logout:hover {background:#750f23;}
 .review-card button{padding:4px 10px;border:none;border-radius:5px;cursor:pointer;}
 
 .recenzion {
-    margin: 20px 5%;
+    margin: 20px 10%;
 }
 
 .miere-info {
@@ -857,7 +859,7 @@ div a.despre-buton:hover {
 
 
 .block {
-    max-width: 200px;
+    width: 200px;
 }
 .block img {
     text-align: center;
@@ -873,7 +875,7 @@ div a.despre-buton:hover {
 
 .blocks .block img {
     filter: brightness(0.85);
-    max-height:200px;
+    height:200px;
     border-radius: 50%;
     filter: brightness(0.80);
 }
@@ -909,8 +911,9 @@ div a.despre-buton:hover {
 /*contacte*/
 
 .contact-section {
-    padding: 50px 0 100px;
+    padding: 50px 10%;
     background: var(--light-pink-color);
+    text-align: center;
 }
 
 .contact-section .section-content {

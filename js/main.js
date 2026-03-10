@@ -79,3 +79,25 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", revealSections);
     revealSections(); // Verifică secțiunile la încărcare
 });
+
+
+function contSubmit() {
+        // Firebase config
+    const firebaseConfig = {
+  apiKey: "AIzaSyDezeBHfvR0wFRggzxU0ga2AFrrDhhjA00",
+  authDomain: "miere-559ac.firebaseapp.com",
+  databaseURL: "https://miere-559ac-default-rtdb.firebaseio.com",
+  projectId: "miere-559ac",
+  storageBucket: "miere-559ac.firebasestorage.app",
+  messagingSenderId: "2422302555",
+  appId: "1:2422302555:web:d23258dcb323a621099c7e",
+  measurementId: "G-4C5HWD9CEX"
+};
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    
+    // inregistrare
+    let currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
+    if(!currentUser){ window.location.href="/pagini/inreg.html"; }
+
+}
