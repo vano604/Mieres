@@ -859,7 +859,7 @@ div a.despre-buton:hover {
 
 
 .block {
-    width: 200px;
+    height:200px;
 }
 .block img {
     text-align: center;
@@ -875,7 +875,7 @@ div a.despre-buton:hover {
 
 .blocks .block img {
     filter: brightness(0.85);
-    height:200px;
+    max-height:200px;
     border-radius: 50%;
     filter: brightness(0.80);
 }

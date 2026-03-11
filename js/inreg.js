@@ -12,7 +12,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Админы
+// Administratori
 let predefinedUsers = [
     {name:"Vanovich667_ADM", password:"15fev1215fev12", avatar:"https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg", role:"admin"},
     {name:"Maxim32123_ADM", password:"maximadmin12gs2", avatar:"https://static.vecteezy.com/system/resources/thumbnails/019/194/935/small_2x/global-admin-icon-color-outline-vector.jpg", role:"admin"},
@@ -20,7 +20,7 @@ let predefinedUsers = [
     
 ];
 
-// Добавляем админов в Firebase, если их там нет
+// A
 predefinedUsers.forEach(admin => {
     database.ref('users').orderByChild('name').equalTo(admin.name).once('value')
     .then(snapshot => {
@@ -41,7 +41,7 @@ if(currentUser){
 function showLoginBox(){document.getElementById('registerBox').style.display='none';document.getElementById('loginBox').style.display='block';document.getElementById('formTitle').innerText="Autentificare";}
 function showRegisterBox(){document.getElementById('registerBox').style.display='block';document.getElementById('loginBox').style.display='none';document.getElementById('formTitle').innerText="Inregistrare";}
 
-// Регистрация
+// Iregistrare
 function registerUser(){
     const name=document.getElementById('regUsername').value.trim();
     const pass1=document.getElementById('regPassword').value;
@@ -74,12 +74,12 @@ function registerUser(){
     reader.readAsDataURL(fileInput.files[0]);
 }
 
-// Вход
+// Intrere
 function loginUser(){
     const name=document.getElementById('loginUsername').value.trim();
     const pass=document.getElementById('loginPassword').value;
 
-    // Админ
+    // Administrator
     let adminUser = predefinedUsers.find(u=>u.name===name && u.password===pass);
     if(adminUser){
         currentUser=adminUser;
@@ -96,7 +96,7 @@ function loginUser(){
 
         currentUser = user;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        // Сохраняем сессию
+        // Salvam sesiunea
         database.ref('currentSessions/'+name).set(true);
         window.location.href='../index.html';
     }).catch(err=>alert("Eroare de conectare: "+err.message));
