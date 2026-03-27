@@ -1,0 +1,74 @@
+body {
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:#fff; /* тёмный фон */
+    font-family: Arial, sans-serif;
+}
+
+/* forma */
+.auth-container{
+    background: #750f23;
+    padding:30px;
+    border-radius:15px;
+    width:350px;
+    backdrop-filter: blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.auth-container h2{
+    margin-bottom:20px;
+    font-size:1.5rem;
+    color:#fff;
+}
+
+.auth-container input{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+    font-size:1rem;
+    background-color: rgba(255,255,255,0.2);
+    color:#fff;
+}
+
+.auth-container input::placeholder{
+    color:#ddd;
+}
+
+.auth-container input[type="file"]{
+    padding:5px;
+}
+
+.auth-container button{
+    width:100%;
+    padding:12px;
+    background:#f3961c;
+    color:#fff;
+    font-weight:bold;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.auth-container button:hover{
+    background:#b97316;
+}
+
+.toggle-link{
+    margin-top:10px;
+    font-size:14px;
+    color:#aaa;
+    cursor:pointer;
+    text-decoration:underline;
+}
+
+.toggle-link:hover{
+    color:#fff;
+}
